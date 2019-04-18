@@ -5,7 +5,7 @@
   "main": "1.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-	"start": "tsc 1.ts && node 1.js"
+	"start": "tsc -p tsconfig.json && node 1.js"
   },
   "author": "",
   "license": "MIT",
