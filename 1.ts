@@ -96,8 +96,6 @@ class state {
     }
 }
 
-
-
 var states = [
   new state([new phy(false, false), new phy(false, false), new phy(false, false), new phy(false, false), new phy(false, false)]),
   new state([new phy(true, false), new phy(false, false), new phy(false, false), new phy(false, false), new phy(false, false)]),
@@ -118,3 +116,13 @@ var states = [
   new state([new phy(true, false), new phy(true, false), new phy(true, false), new phy(true, true), new phy(false, false)]),
   new state([new phy(true, false), new phy(true, true), new phy(false, false), new phy(true, true), new phy(false, false)])
 ];
+
+// создадим матрицу, описывающую сеть - из какого состояния в какое возможен переход
+var matrix = [];
+for(let i = 0; i < states.length; i++) {
+    matrix[i] = [];
+    for(let j = 0; j < states.length; j++) {
+        matrix[i][j] = states[i].becomes(states[j]);
+    }
+}
+console.log(matrix);
