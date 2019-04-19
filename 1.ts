@@ -34,6 +34,14 @@ class state {
         return false;
     }
 
+    toString() {
+        let str = "";
+        for(let i = 0; i < this.length; i++) {
+            str += this.phys[i].left + " " + this.phys[i].right + " | ";
+        }
+        return str;
+    }
+
     right(i: number) { // индекс правого соседа
         return (i + 1) % this.length;
     }
@@ -125,4 +133,18 @@ for(let i = 0; i < states.length; i++) {
         matrix[i][j] = states[i].becomes(states[j]);
     }
 }
-console.log(matrix);
+//console.log(matrix);
+
+
+// дерево глубоким поиском
+function dfs(currentState: number) {
+    //states[currentState].toString();
+    for (let i = 0; i < states.length; i++) {
+        if (matrix[currentState][i] === true) {
+            console.log("from " + (currentState + 1) + " to " + (i + 1));
+            matrix[currentState][i] = false;
+            dfs(i);
+        }
+    }
+}
+dfs(0);
