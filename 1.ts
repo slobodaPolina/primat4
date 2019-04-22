@@ -133,18 +133,22 @@ for(let i = 0; i < states.length; i++) {
         matrix[i][j] = states[i].becomes(states[j]);
     }
 }
-//console.log(matrix);
 
+function bfs(begState: number) {
+    let marked = [];
+    marked[begState] = 1;
+    let queue = [];
+    queue.push(begState);
 
-// дерево глубоким поиском
-function dfs(currentState: number) {
-    //states[currentState].toString();
-    for (let i = 0; i < states.length; i++) {
-        if (matrix[currentState][i] === true) {
-            console.log("from " + (currentState + 1) + " to " + (i + 1));
-            matrix[currentState][i] = false;
-            dfs(i);
+    while (queue.length > 0) {
+        let currentState = queue.shift();
+        for (let i = 0; i < states.length; i++) {
+            if ((matrix[currentState][i] === true) && (marked[i] === undefined)) {
+                console.log("from " + (currentState + 1) + " to " + (i + 1));
+                queue.push(i);
+                marked[i] = 1;
+            }
         }
     }
 }
-dfs(0);
+bfs(0);
